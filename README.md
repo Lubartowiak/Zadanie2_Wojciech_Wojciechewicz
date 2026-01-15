@@ -17,7 +17,7 @@ Dostęp zrealizowany jest przy użyciu Ingress Controller (nginx).
 
 ## Wybrany stack
 Wybrany stack z Popular Stacks:
-- MongoDB – baza danych (StatefulSet + PersistentVolumeClaim)
+- MongoDB – baza danych
 - Express + Node.js – backend REST API
 - Angular – frontend SPA
 - Nginx Ingress – wystawienie aplikacji na zewnątrz klastra
