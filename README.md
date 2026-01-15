@@ -33,10 +33,6 @@ Aplikacja została wdrożona jako zestaw mikro-usług w klastrze Kubernetes:
 - Konfiguracja backendu przekazywana przez **ConfigMap**,
 - Dane wrażliwe (hasło do MongoDB) przechowywane w **Secret**.
 
-#Uruchomienie
-
----
-
 ## Uruchomienie aplikacji (Minikube)
 
 ## 1. Uruchomienie Minikube i Ingress
