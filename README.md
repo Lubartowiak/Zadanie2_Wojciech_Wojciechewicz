@@ -93,21 +93,22 @@ http://brilliantapp.zad
 # Część nieobowiązkowa – rolling update
 
 # 1. Zmiany widoczne po aktualizacji
-W ramach aktualizacji wdrożono nową wersję aplikacji (tag obrazów `1.1`):
-- Backend: dodano endpoint `GET /api/version` zwracający wersję aplikacji (`{"version":"1.1"}`).
-- Frontend: w interfejsie widoczna jest wersja aplikacji (np. w tytule `BrilliantTasks v1.1`).
+W ramach aktualizacji wdrożono nową wersję aplikacji (tag obrazów 1.1):
+- Backend: dodano endpoint GET /api/version zwracający wersję aplikacji.
+- Frontend: w interfejsie widoczna jest wersja aplikacji.
 
 # Weryfikacja poprawności aktualizacji:
-- `curl http://brilliantapp.zad/api/version` zwraca `{"version":"1.1"}`
+- `curl http://brilliantapp.zad/api/version`.
 - aplikacja działa pod `http://brilliantapp.zad` bez przerw.
+<img width="821" height="465" alt="Zrzut ekranu 2026-01-15 123921" src="https://github.com/user-attachments/assets/ed52b9d0-8b28-4a15-a7cb-4f8e911f066d" />
 
 # 2. Zmiany w konfiguracji (Kubernetes)
 Aby wykonać aktualizację bez przestoju zastosowano:
-- zwiększenie liczby replik: `replicas: 2` dla `brilliant-api` oraz `brilliant-web`,
-- strategię `RollingUpdate` z parametrami:
-  - `maxUnavailable: 0`
-  - `maxSurge: 1`
-- zmianę tagów obrazów na `brilliant-api:1.1` oraz `brilliant-web:1.1`.
+- zwiększenie liczby replik: replicas: 2 dla brilliant-api oraz brilliant-web,
+- strategię RollingUpdate z parametrami:
+  - maxUnavailable: 0
+  - maxSurge: 1
+- zmianę tagów obrazów na brilliant-api:1.1 oraz brilliant-web:1.1.
 
 # 3. Ilustracja procesu aktualizacji i testy
 Proces aktualizacji wykonano poprzez zastosowanie nowych manifestów i obserwację przebiegu:
@@ -125,9 +126,9 @@ W trakcie rolling update uruchomiono cykliczny test dostępności:
 ## Bonus – sondy Kubernetes (startup/readiness/liveness)
 
 W deploymentach użyto sond:
-- `readinessProbe` (API: `/api/health`, WEB: `/`) – pod otrzymuje ruch dopiero po uzyskaniu gotowości, co zapewnia poprawny rolling update bez kierowania ruchu do niegotowych instancji.
-- `livenessProbe` (API: `/api/health`, WEB: `/`) – wykrywa zawieszony proces i powoduje restart kontenera.
-- `startupProbe` (API: `/api/health`) – pozwala aplikacji wystartować bez fałszywych restartów w trakcie inicjalizacji.
+- readinessProbe – pod otrzymuje ruch dopiero po uzyskaniu gotowości, co zapewnia poprawny rolling update bez kierowania ruchu do niegotowych instancji.
+- livenessProbe – wykrywa zawieszony proces i powoduje restart kontenera.
+- startupProbe – pozwala aplikacji wystartować bez fałszywych restartów w trakcie inicjalizacji.
 
 <img width="1218" height="713" alt="Zrzut ekranu 2026-01-15 123748" src="https://github.com/user-attachments/assets/0dfa32fc-5671-4e07-87be-e4244215aae1" />
 <img width="1326" height="691" alt="Zrzut ekranu 2026-01-15 123858" src="https://github.com/user-attachments/assets/be41d857-4109-4f00-8af1-a4fa52a9b0ce" />
