@@ -69,7 +69,7 @@ kubectl get ingress -n brilliant
 ```
 <img width="965" height="505" alt="Zrzut ekranu 2026-01-14 181920" src="https://github.com/user-attachments/assets/5719c485-3b5f-463c-bfe6-2e37f9fee9f7" />
 
-## 6.Testy poprawności działania
+## 6. Testy poprawności działania
 Test API
 ```
 curl http://brilliantapp.zad/api/health
@@ -82,7 +82,7 @@ curl http://brilliantapp.zad/api/tasks
 ```
 <img width="1349" height="708" alt="Zrzut ekranu 2026-01-14 181958" src="https://github.com/user-attachments/assets/742e3843-be41-4b29-a8f6-7f1838955e83" />
 
-## 7.Test interfejsu użytkownika
+## 7. Test interfejsu użytkownika
 
 W przeglądarce internetowej:
 ```
