@@ -34,6 +34,7 @@ Aplikacja została wdrożona jako zestaw mikro-usług w klastrze Kubernetes:
 - Dane wrażliwe (hasło do MongoDB) przechowywane w **Secret**.
 
 ## Pliki konfiguracyjne
+```
 k8s/00-namespace.yaml – Namespace brilliant
 k8s/10-mongo-secret.yaml – Secret (login/hasło do MongoDB)
 k8s/11-mongo-statefulset.yaml – StatefulSet MongoDB + PVC
@@ -44,7 +45,7 @@ k8s/22-api-service.yaml – Service backendu
 k8s/30-web-deployment.yaml – Deployment frontendu (rolling update + sondy)
 k8s/31-web-service.yaml – Service frontendu
 k8s/40-ingress.yaml – Ingress dla brilliantapp.zad
-
+```
 ## Uruchomienie aplikacji (Minikube)
 
 ## 1. Uruchomienie Minikube i Ingress
@@ -133,6 +134,7 @@ Proces aktualizacji wykonano poprzez zastosowanie nowych manifestów i obserwacj
 W trakcie rolling update uruchomiono cykliczny test dostępności:
 - regularne zapytania HTTP do `http://brilliantapp.zad/api/health` zwracały kod `200` (brak przerwy w działaniu),
 - `http://brilliantapp.zad/api/version` potwierdza wersję `1.1`.
+- Brak przerwy w działaniu zapewniono przez uruchomienie min. 2 replik oraz strategię RollingUpdate z maxUnavailable: 0, dzięki czemu zawsze co najmniej jedna instancja pozostawała gotowa do obsługi ruchu.
 <img width="827" height="685" alt="Zrzut ekranu 2026-01-15 123402" src="https://github.com/user-attachments/assets/87aeb0cb-400e-4af1-8b0f-4f112e49864b" />
 
 ## Sondy Kubernetes (startup/readiness/liveness)
