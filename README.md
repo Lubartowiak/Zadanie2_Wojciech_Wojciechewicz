@@ -1,4 +1,4 @@
-# Zadanie2_Wojciech_Wojciechewwwicz
+# Zadanie2_Wojciech_Wojciechewicz
 
 ## Opis projektu
 Projekt przedstawia przykładową aplikację full-stack zrealizowaną w stacku MEAN
