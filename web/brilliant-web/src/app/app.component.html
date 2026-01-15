@@ -1,0 +1,29 @@
+<div class="container">
+  <h1>{{ title }}</h1>
+
+  <div class="row">
+    <input
+      placeholder="Nowe zadanie..."
+      [(ngModel)]="newTitle"
+      (keyup.enter)="addTask()"
+    />
+    <button (click)="addTask()">Dodaj</button>
+  </div>
+
+  <p class="meta">
+    API test: <a href="/api/health" target="_blank">/api/health</a>
+  </p>
+
+  <p *ngIf="loading">Ładowanie...</p>
+  <p class="error" *ngIf="error">{{ error }}</p>
+
+  <ul>
+    <li *ngFor="let t of tasks" [class.done]="t.done">
+      <label>
+        <input type="checkbox" [checked]="t.done" (change)="toggle(t)" />
+        <span>{{ t.title }}</span>
+      </label>
+      <button class="danger" (click)="remove(t)">Usuń</button>
+    </li>
+  </ul>
+</div>

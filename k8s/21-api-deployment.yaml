@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: brilliant-api
+  namespace: brilliant
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: brilliant-api
+  template:
+    metadata:
+      labels:
+        app: brilliant-api
+    spec:
+      containers:
+        - name: api
+          image: brilliant-api:1.0
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 3000
+          envFrom:
+            - configMapRef:
+                name: api-config
+          env:
+            - name: MONGO_URL
+              value: "mongodb://root:rootpass@mongo:27017/?authSource=admin"
+          readinessProbe:
+            httpGet:
+              path: /api/health
+              port: 3000
+            initialDelaySeconds: 5
+            periodSeconds: 10

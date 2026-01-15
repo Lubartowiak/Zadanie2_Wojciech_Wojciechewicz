@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: brilliant-web
+  namespace: brilliant
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: brilliant-web
+  template:
+    metadata:
+      labels:
+        app: brilliant-web
+    spec:
+      containers:
+        - name: web
+          image: brilliant-web:1.0
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 80

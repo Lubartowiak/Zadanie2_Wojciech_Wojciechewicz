@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: brilliant-ingress
+  namespace: brilliant
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: brilliantapp.zad
+      http:
+        paths:
+          - path: /api
+            pathType: Prefix
+            backend:
+              service:
+                name: brilliant-api
+                port:
+                  number: 3000
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: brilliant-web
+                port:
+                  number: 80
