@@ -123,7 +123,7 @@ W trakcie rolling update uruchomiono cykliczny test dostępności:
 - `http://brilliantapp.zad/api/version` potwierdza wersję `1.1`.
 <img width="827" height="685" alt="Zrzut ekranu 2026-01-15 123402" src="https://github.com/user-attachments/assets/87aeb0cb-400e-4af1-8b0f-4f112e49864b" />
 
-## Bonus – sondy Kubernetes (startup/readiness/liveness)
+## Sondy Kubernetes (startup/readiness/liveness)
 
 W deploymentach użyto sond:
 - readinessProbe – pod otrzymuje ruch dopiero po uzyskaniu gotowości, co zapewnia poprawny rolling update bez kierowania ruchu do niegotowych instancji.
