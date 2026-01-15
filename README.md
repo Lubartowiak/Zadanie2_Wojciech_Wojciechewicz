@@ -33,6 +33,18 @@ Aplikacja została wdrożona jako zestaw mikro-usług w klastrze Kubernetes:
 - Konfiguracja backendu przekazywana przez **ConfigMap**,
 - Dane wrażliwe (hasło do MongoDB) przechowywane w **Secret**.
 
+## Pliki konfiguracyjne
+k8s/00-namespace.yaml – Namespace brilliant
+k8s/10-mongo-secret.yaml – Secret (login/hasło do MongoDB)
+k8s/11-mongo-statefulset.yaml – StatefulSet MongoDB + PVC
+k8s/12-mongo-service.yaml – Service dla MongoDB
+k8s/20-api-configmap.yaml – ConfigMap dla backendu
+k8s/21-api-deployment.yaml – Deployment backendu (rolling update + sondy)
+k8s/22-api-service.yaml – Service backendu
+k8s/30-web-deployment.yaml – Deployment frontendu (rolling update + sondy)
+k8s/31-web-service.yaml – Service frontendu
+k8s/40-ingress.yaml – Ingress dla brilliantapp.zad
+
 ## Uruchomienie aplikacji (Minikube)
 
 ## 1. Uruchomienie Minikube i Ingress
