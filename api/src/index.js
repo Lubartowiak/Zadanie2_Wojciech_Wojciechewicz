@@ -6,9 +6,9 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Konfiguracja z ENV (przyjdzie z ConfigMap/Secret)
+
 const PORT = process.env.PORT || 3000;
-const MONGO_URL = process.env.MONGO_URL;          // np. mongodb://user:pass@mongo:27017
+const MONGO_URL = process.env.MONGO_URL;
 const DB_NAME = process.env.DB_NAME || "brilliant";
 const COLLECTION = process.env.COLLECTION || "tasks";
 
@@ -42,7 +42,7 @@ app.get("/api/tasks", async (req, res) => {
   }
 });
 
-// POST /api/tasks { title: string }
+// POST /api/tasks
 app.post("/api/tasks", async (req, res) => {
   try {
     const title = (req.body.title || "").trim();
@@ -56,7 +56,7 @@ app.post("/api/tasks", async (req, res) => {
   }
 });
 
-// PATCH /api/tasks/:id { done?: boolean, title?: string }
+// PATCH /api/tasks/:id
 app.patch("/api/tasks/:id", async (req, res) => {
   try {
     const id = req.params.id;
@@ -98,7 +98,7 @@ connectMongo()
     process.exit(1);
   });
 
-// Graceful shutdown
+
 process.on("SIGINT", async () => {
   try { await client?.close(); } catch {}
   process.exit(0);
